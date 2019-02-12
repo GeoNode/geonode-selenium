@@ -1,16 +1,17 @@
 # geonode-selenium
 
-Testing GeoNode with Selenium.
+Testing [GeoNode](http://geonode.org/) with [Selenium](https://www.seleniumhq.org/).
 
 # Requirements
 
 Mandatory:
- - Python 3
- - A browser supported by Selenium (Firefox is used by default)
+ - [Python 3](https://www.python.org/)
+ - A browser supported by a [Selenium WebDriver](https://www.seleniumhq.org/projects/webdriver/) (Firefox is used by default)
 
 Optional:
- - GeoNode sourcecode (required by run-docker.sh)
- - fades (to automatically manage virtualenvs)
+ - [Docker](https://www.docker.com/) (required by `test-docker.sh`)
+ - [GeoNode sourcecode](https://github.com/GeoNode/geonode) (required by `test-docker.sh`)
+ - [fades](https://github.com/PyAr/fades) (to automatically manage virtualenvs)
 
 # Setup
 
