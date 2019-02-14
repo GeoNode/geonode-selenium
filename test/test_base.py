@@ -29,10 +29,20 @@ class LayerUploadCheck(BaseCase):
         pass
 
     @superuser
-    def test_upload(self):
+    def upload(self):
         self.click_link("Layers")
         self.click_link("Upload Layers")
         self.execute_script("jQuery('#file-input').show()")
         self.update_text('#file-input', GEOTIFF)
         self.click_link("Upload files")
         self.click_link("Layer Info", timeout=60)
+
+    def layer(func):
+        def wrapper(self, *args, **kwargs):
+            self.upload()
+            func(self, *args, **kwargs)
+        return wrapper
+
+    @layer
+    def test_upload(self):
+        pass
