@@ -2,6 +2,8 @@
 
 set -e
 
+cd $(dirname "${BASH_SOURCE[0]}")
+
 if [ -z "$GEONODE_REPOSITORY" ]; then
     GEONODE_REPOSITORY="geonode"
 fi
