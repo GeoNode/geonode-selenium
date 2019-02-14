@@ -3,7 +3,7 @@
 from seleniumbase import BaseCase
 import os
 
-BASE = "http://127.0.0.1/"
+BASE = "http://127.0.0.1"
 GEOTIFF = os.path.abspath("data/UTM2GTIF.TIF")
 USER = "super"
 PASS = "duper"
@@ -46,3 +46,14 @@ class LayerUploadCheck(BaseCase):
     @layer
     def test_upload(self):
         pass
+
+    @layer
+    def test_preview(self):
+        self.open(BASE+'/geoserver')
+        self.click_link("Layer Preview")
+        self.click_link("OpenLayers")
+        self.switch_to_window(1)
+        self.wait_for_ready_state_complete()
+        self.assertEqual("OpenLayers map preview", self.get_title())
+        self.driver.close()
+        self.switch_to_default_window()
