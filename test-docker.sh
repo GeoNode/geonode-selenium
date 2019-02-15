@@ -14,16 +14,16 @@ for i in {1..3}; do
     docker-compose -f docker-compose.yml up -d --build django geoserver postgres nginx
     cd -
 
-    sleep 10 # avoid curl false positives
-    set +e
-    curl -s --fail \
-         --retry 30 --retry-delay 10 --retry-connrefused \
-         http://127.0.0.1/ >/dev/null
-    code=$?
-    set -e
-    if [ $code == 0 ]; then
-        ./test.sh
-        exit $?
-    fi
+    for i in {1..60}; do
+        containers=$(docker ps -q \
+                     --filter label=com.docker.compose.project=spcgeonode \
+                     --filter health=unhealthy \
+                     --filter health=starting)
+        if [ -z "$containers" ]; then
+            ./test.sh
+            exit $?
+        fi
+        sleep 10
+    done
 done
 exit 125 # git bisect skip
