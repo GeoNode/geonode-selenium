@@ -37,10 +37,20 @@ class LayerUploadCheck(BaseCase):
         self.click_link("Upload files")
         self.click_link("Layer Info", timeout=60)
 
+    @superuser
+    def remove(self):
+        self.click_link("Layers")
+        self.click_link('utm2gtif')
+        self.click_button("Editing Tools")
+        self.click_link("Remove")
+        self.click('input[value="Yes, I am sure"]')
+        self.assertEqual("Explore Layers - example.com", self.get_title())
+
     def layer(func):
         def wrapper(self, *args, **kwargs):
             self.upload()
             func(self, *args, **kwargs)
+            self.remove()
         return wrapper
 
     @layer
@@ -56,3 +66,4 @@ class LayerUploadCheck(BaseCase):
         self.assertEqual("OpenLayers map preview", self.get_title())
         self.driver.close()
         self.switch_to_default_window()
+        self.open(BASE)
