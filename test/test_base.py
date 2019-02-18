@@ -53,7 +53,6 @@ class LayerUploadCheck(BaseCase):
         self.click_link("Layer Preview")
         self.click_link("OpenLayers")
         self.switch_to_window(1)
-        self.wait_for_ready_state_complete()
         self.assertEqual("OpenLayers map preview", self.get_title())
         self.driver.close()
         self.switch_to_default_window()
