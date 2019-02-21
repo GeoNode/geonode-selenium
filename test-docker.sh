@@ -2,6 +2,8 @@
 
 set -e
 
+export HTTP_HOST=127.0.0.1
+export HTTP_PORT=8080
 cd $(dirname "${BASH_SOURCE[0]}")
 
 if [ -z "$GEONODE_REPOSITORY" ]; then

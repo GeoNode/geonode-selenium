@@ -3,7 +3,9 @@
 from seleniumbase import BaseCase
 import os
 
-BASE = "http://127.0.0.1"
+os.environ.setdefault("HTTP_HOST", "127.0.0.1")
+os.environ.setdefault("HTTP_PORT", "8080")
+BASE = "http://{HTTP_HOST}:{HTTP_PORT}".format(**os.environ)
 GEOTIFF = os.path.abspath("data/UTM2GTIF.TIF")
 USER = "super"
 PASS = "duper"
