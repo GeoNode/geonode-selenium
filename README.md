@@ -31,6 +31,16 @@ If using fades:
 $ pip3 install --user fades
 ```
 
+## Selenium WebDriver (Gecko)
+
+```bash
+$ tag=v0.24.0
+$ wget https://github.com/mozilla/geckodriver/releases/download/$tag/geckodriver-$tag-linux64.tar.gz -O- |
+      tar zx -C $HOME/bin
+```
+
+Other releases are available from: https://github.com/mozilla/geckodriver/releases/latest
+
 ## Data
 
 ```bash
