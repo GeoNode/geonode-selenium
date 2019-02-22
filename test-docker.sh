@@ -13,7 +13,9 @@ fi
 for i in {1..3}; do
     cd "$GEONODE_REPOSITORY/scripts/spcgeonode/"
     docker-compose -f docker-compose.yml down --volumes
-    docker-compose -f docker-compose.yml up -d --build django geoserver postgres nginx
+    docker-compose -f docker-compose.yml up -d --build \
+        django geoserver postgres nginx \
+        celery celerybeat celerycam rabbitmq
     cd -
 
     for i in {1..60}; do
