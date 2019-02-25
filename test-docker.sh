@@ -24,7 +24,7 @@ for i in {1..3}; do
                      --filter health=unhealthy \
                      --filter health=starting)
         if [ -z "$containers" ]; then
-            ./test.sh
+            ./test.sh "$@"
             exit $?
         fi
         sleep 10
