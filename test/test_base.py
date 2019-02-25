@@ -32,6 +32,7 @@ class LayerUploadCheck(BaseCase):
 
     @superuser
     def upload(self):
+        self.click_link("Data")
         self.click_link("Layers")
         self.click_link("Upload Layers")
         self.execute_script("jQuery('#file-input').show()")
@@ -41,6 +42,7 @@ class LayerUploadCheck(BaseCase):
 
     @superuser
     def remove(self):
+        self.click_link("Data")
         self.click_link("Layers")
         self.click_link('utm2gtif')
         self.click_button("Editing Tools")
