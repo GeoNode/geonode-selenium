@@ -3,12 +3,10 @@
 from seleniumbase import BaseCase
 import os
 
-os.environ.setdefault("HTTP_HOST", "127.0.0.1")
-os.environ.setdefault("HTTP_PORT", "8080")
-BASE = "http://{HTTP_HOST}:{HTTP_PORT}".format(**os.environ)
+BASE = os.environ.get("GEONODE_URL", "http://127.0.0.1:8080")
 GEOTIFF = os.path.abspath("data/UTM2GTIF.TIF")
-USER = "super"
-PASS = "duper"
+USER = os.environ.get("GEONODE_USER", "super")
+PASS = os.environ.get("GEONODE_PASS", "duper")
 
 class LayerUploadCheck(BaseCase):
     def click_button(self, label):
