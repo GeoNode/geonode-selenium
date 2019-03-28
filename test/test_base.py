@@ -69,3 +69,11 @@ class LayerUploadCheck(BaseCase):
         self.driver.close()
         self.switch_to_default_window()
         self.open(BASE)
+
+    @layer
+    def test_missing_thumbnail(self):
+        self.open(BASE+'/layers/')
+        elements = self.driver.find_elements_by_xpath(
+            "//img[contains(@src, 'missing_thumb.png')]"
+        )
+        self.assertEqual(len(elements), 0)
