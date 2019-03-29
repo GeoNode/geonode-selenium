@@ -7,6 +7,7 @@ BASE = os.environ.get("GEONODE_URL", "http://127.0.0.1:8080")
 GEOTIFF = os.path.abspath("data/UTM2GTIF.TIF")
 USER = os.environ.get("GEONODE_USER", "super")
 PASS = os.environ.get("GEONODE_PASS", "duper")
+DOMAIN = os.environ.get("GEONODE_DOMAIN", "example.com")
 
 class LayerUploadCheck(BaseCase):
     def click_button(self, label):
@@ -46,7 +47,7 @@ class LayerUploadCheck(BaseCase):
         self.click_button("Editing Tools")
         self.click_link("Remove")
         self.click('input[value="Yes, I am sure"]')
-        self.assertEqual("Explore Layers - example.com", self.get_title())
+        self.assertEqual("Explore Layers - "+DOMAIN, self.get_title())
 
     def layer(func):
         def wrapper(self, *args, **kwargs):
