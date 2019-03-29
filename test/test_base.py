@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 from seleniumbase import BaseCase
+import requests
+
 import os
 
 BASE = os.environ.get("GEONODE_URL", "http://127.0.0.1:8080")
@@ -78,3 +80,14 @@ class LayerUploadCheck(BaseCase):
             "//img[contains(@src, 'missing_thumb.png')]"
         )
         self.assertEqual(len(elements), 0)
+
+    @layer
+    def test_broken_thumbnail(self):
+        self.open(BASE+'/layers/')
+        for img in self.find_elements('img'):
+            src = img.get_attribute('src')
+            # Skip external images
+            if not src.startswith(BASE):
+                continue
+            req = requests.head(src)
+            self.assertEqual(req.status_code, 200)
