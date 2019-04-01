@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from seleniumbase import BaseCase
-import requests
 
 import os
 
@@ -89,5 +88,5 @@ class LayerUploadCheck(BaseCase):
             # Skip external images
             if not src.startswith(BASE):
                 continue
-            req = requests.head(src)
-            self.assertEqual(req.status_code, 200)
+            status_code = self.get_link_status_code(src)
+            self.assertEqual(status_code, 200)
