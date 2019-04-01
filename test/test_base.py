@@ -90,3 +90,12 @@ class LayerUploadCheck(BaseCase):
                 continue
             status_code = self.get_link_status_code(src)
             self.assertEqual(status_code, 200)
+
+    @layer
+    def test_layer_no_404(self):
+        self.assert_no_404_errors()
+
+    @layer
+    def test_layers_no_404(self):
+        self.open(BASE+'/layers/')
+        self.assert_no_404_errors()
