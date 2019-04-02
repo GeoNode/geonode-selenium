@@ -92,13 +92,16 @@ class LayerUploadCheck(BaseCase):
             self.assertEqual(status_code, 200)
 
     @layer
-    def test_layer_no_404(self):
+    def test_layer_no_errors(self):
         self.assert_no_404_errors()
+        self.assert_no_js_errors()
 
     @layer
-    def test_layers_no_404(self):
+    def test_layers_no_errors(self):
         self.open(BASE+'/layers/')
         self.assert_no_404_errors()
+        self.assert_no_js_errors()
 
-    def test_home_no_404(self):
+    def test_home_no_errors(self):
         self.assert_no_404_errors()
+        self.assert_no_js_errors()
