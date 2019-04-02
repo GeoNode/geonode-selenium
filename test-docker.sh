@@ -2,17 +2,14 @@
 
 set -e
 
-export HTTP_HOST=127.0.0.1
-export HTTP_PORT=8080
+set -a
+: "${HTTP_HOST:=127.0.0.1}"
+: "${HTTP_PORT:=8080}"
+: "${GEONODE_REPOSITORY:=geonode}"
+: "${COMPOSE_OPTS:=--build}"
+set +a
+
 cd $(dirname "${BASH_SOURCE[0]}")
-
-if [ -z "$GEONODE_REPOSITORY" ]; then
-    GEONODE_REPOSITORY="geonode"
-fi
-if [ -z "$COMPOSE_OPTS" ]; then
-    COMPOSE_OPTS="--build"
-fi
-
 for i in {1..3}; do
     cd "$GEONODE_REPOSITORY/scripts/spcgeonode/"
     docker-compose -f docker-compose.yml down --volumes
