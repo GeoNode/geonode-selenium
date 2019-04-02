@@ -99,3 +99,6 @@ class LayerUploadCheck(BaseCase):
     def test_layers_no_404(self):
         self.open(BASE+'/layers/')
         self.assert_no_404_errors()
+
+    def test_home_no_404(self):
+        self.assert_no_404_errors()
