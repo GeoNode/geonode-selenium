@@ -105,3 +105,8 @@ class LayerUploadCheck(BaseCase):
     def test_home_no_errors(self):
         self.assert_no_404_errors()
         self.assert_no_js_errors()
+
+    @superuser
+    def test_home_no_404_admin(self):
+        self.assert_no_404_errors()
+        self.assert_no_js_errors()
