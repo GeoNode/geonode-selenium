@@ -3,10 +3,11 @@
 set -e
 
 set -a
-: "${HTTP_HOST:=127.0.0.1}"
-: "${HTTP_PORT:=8080}"
 : "${GEONODE_REPOSITORY:=geonode}"
 : "${COMPOSE_OPTS:=--build}"
+: "${GEONODE_USER:=admin}"
+: "${GEONODE_PASS:=admin}"
+: "${GEONODE_URL=http://localhost}"
 set +a
 
 cd $(dirname "${BASH_SOURCE[0]}")
