@@ -13,8 +13,14 @@ set +a
 cd $(dirname "${BASH_SOURCE[0]}")
 for i in {1..3}; do
     cd "$GEONODE_REPOSITORY/"
-    docker-compose -f docker-compose.yml -f docker-compose.override.localhost.yml down --volumes
-    docker-compose -f docker-compose.yml -f docker-compose.override.localhost.yml up -d $COMPOSE_OPTS
+    docker-compose \
+        -f docker-compose.yml \
+        -f docker-compose.override.localhost.yml \
+        down --volumes --remove-orphans
+    docker-compose \
+        -f docker-compose.yml \
+        -f docker-compose.override.localhost.yml \
+        up -d $COMPOSE_OPTS
     cd -
 
     for i in {1..60}; do

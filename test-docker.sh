@@ -13,7 +13,7 @@ cd $(dirname "${BASH_SOURCE[0]}")
 for i in {1..3}; do
     cd "$GEONODE_REPOSITORY/scripts/spcgeonode/"
     checks=$(grep -r 'healthcheck:' docker-compose.yml | wc -l)
-    docker-compose -f docker-compose.yml down --volumes
+    docker-compose -f docker-compose.yml down --volumes --remove-orphans
     docker-compose -f docker-compose.yml up -d $COMPOSE_OPTS \
         django geoserver postgres nginx \
         celery celerybeat celerycam rabbitmq
