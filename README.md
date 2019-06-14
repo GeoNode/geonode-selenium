@@ -44,7 +44,7 @@ Other releases are available from: https://github.com/mozilla/geckodriver/releas
 ## Data
 
 ```bash
-$ wget https://download.osgeo.org/geotiff/samples/spot/chicago/UTM2GTIF.TIF -P data
+$ wget https://download.osgeo.org/geotiff/samples/made_up/ntf_nord.tif -P data
 ```
 
 # Usage

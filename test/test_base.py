@@ -5,10 +5,13 @@ from seleniumbase import BaseCase
 import os
 
 BASE = os.environ.get("GEONODE_URL", "http://127.0.0.1:8080")
-GEOTIFF = os.path.abspath("data/UTM2GTIF.TIF")
+GEOTIFF = os.path.abspath("data/ntf_nord.tif")
 USER = os.environ.get("GEONODE_USER", "super")
 PASS = os.environ.get("GEONODE_PASS", "duper")
 DOMAIN = os.environ.get("GEONODE_DOMAIN", "example.com")
+
+FILENAME = os.path.split(GEOTIFF)[-1]
+LAYERNAME = os.path.splitext(FILENAME)[0]
 
 class LayerUploadCheck(BaseCase):
     def click_button(self, label):
@@ -44,7 +47,7 @@ class LayerUploadCheck(BaseCase):
     def remove(self):
         self.click_link("Data")
         self.click_link("Layers")
-        self.click_link('utm2gtif')
+        self.click_link(LAYERNAME)
         self.click_button("Editing Tools")
         self.click_link("Remove")
         self.click('input[value="Yes, I am sure"]')
