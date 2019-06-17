@@ -48,6 +48,8 @@ class LayerUploadCheck(BaseCase):
         self.click_link("Data")
         self.click_link("Layers")
         self.click_link(LAYERNAME)
+        # Workaround for non-SPCGeonode
+        self.open(BASE+"/layers/geonode:%s" % LAYERNAME)
         self.click_button("Editing Tools")
         self.click_link("Remove")
         self.click('input[value="Yes, I am sure"]')
