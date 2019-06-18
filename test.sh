@@ -9,5 +9,5 @@ if $($PYTHON -m fades -V >/dev/null); then
     PYTHON="fades -r requirements.txt -x python"
 fi
 
-$PYTHON -m pytest $@
+$PYTHON -m pytest --ignore=geonode $@
 exit $?
