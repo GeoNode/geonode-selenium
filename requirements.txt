@@ -1,1 +1,1 @@
-seleniumbase==1.31.7
+seleniumbase==1.31.8
