@@ -1,0 +1,7 @@
+version: '3.4'
+
+services:
+  geonode-selenium:
+    image: geonode-selenium
+    build:
+      context: ..

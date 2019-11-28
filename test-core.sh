@@ -11,7 +11,7 @@ set -a
 set +a
 
 cd $(dirname "${BASH_SOURCE[0]}")
-for i in {1..3}; do
+for i in $(seq 1 3); do
     cd "$GEONODE_REPOSITORY/"
     docker-compose \
         -f docker-compose.yml \
@@ -23,7 +23,7 @@ for i in {1..3}; do
         up -d $COMPOSE_OPTS
     cd -
 
-    for i in {1..60}; do
+    for i in $(seq 1 60); do
         if docker logs --tail 10 django4geonode |& grep "getting INI configuration from /usr/src/app/uwsgi.ini"; then
             ./test.sh "$@"
             exit $?
