@@ -1,8 +1,8 @@
-#!/bin/bash -ex
+#!/bin/sh -ex
 
 set -e
 
-cd $(dirname "${BASH_SOURCE[0]}")
+cd $(dirname $(realpath "$0"))
 
 PYTHON=python3
 if $($PYTHON -m fades -V >/dev/null); then
