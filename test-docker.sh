@@ -23,7 +23,7 @@ for i in $(seq 1 3); do
         containers=$(docker ps -q \
                      --filter label=com.docker.compose.project=spcgeonode \
                      --filter health=healthy | wc -l)
-        if [[ "$containers" -eq "$checks" ]]; then
+        if [ "$containers" -eq "$checks" ]; then
             exec docker-compose -f $OLDPWD/docker/compose-test.yml run geonode-selenium sh cmd.sh "$@"
         fi
         sleep 10
