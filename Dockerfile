@@ -2,8 +2,9 @@ FROM python:3.7-alpine
 
 WORKDIR /app
 ADD /test *.sh *.txt *.ini docker/cmd.sh ./
+ENV DISPLAY=:99
 
-RUN apk add --no-cache \
+RUN apk add --no-cache xvfb \
         firefox-esr curl \
         build-base libffi-dev openssl-dev && \
     python3 -m venv venv && \
