@@ -14,7 +14,7 @@ jobs:
           name: install dependencies
           command: |
             apk add --no-cache docker docker-compose git
-            git clone https://github.com/GeoNode/geonode.git --depth 1
+            git clone https://github.com/GeoNode/geonode.git -b 2.10.x --depth 1
 
       - run:
           name: run tests
