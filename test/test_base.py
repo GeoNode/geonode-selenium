@@ -13,6 +13,7 @@ DOMAIN = os.environ.get("GEONODE_DOMAIN", "example.com")
 FILENAME = os.path.split(GEOTIFF)[-1]
 LAYERNAME = os.path.splitext(FILENAME)[0]
 
+
 class LayerUploadCheck(BaseCase):
     def click_button(self, label):
         selector = "//button[contains(., '%s')]" % label
