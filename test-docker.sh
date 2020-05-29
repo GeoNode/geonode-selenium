@@ -17,7 +17,7 @@ for i in $(seq 1 3); do
     docker-compose -f docker-compose.yml down --volumes --remove-orphans
     docker-compose -f docker-compose.yml up -d $COMPOSE_OPTS \
         django geoserver postgres nginx \
-        celery celerybeat celerycam rabbitmq
+        celery celerybeat rabbitmq
 
     for j in $(seq 1 60); do
         containers=$(docker ps -q \
