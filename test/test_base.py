@@ -54,7 +54,7 @@ class LayerUploadCheck(BaseCase):
         self.click_button("Editing Tools")
         self.click_link("Remove")
         self.click('input[value="Yes, I am sure"]')
-        self.assertEqual("Explore Layers - "+DOMAIN, self.get_title())
+        self.assertTrue(DOMAIN in self.get_title())
 
     def layer(func):
         def wrapper(self, *args, **kwargs):
