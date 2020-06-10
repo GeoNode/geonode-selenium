@@ -42,13 +42,13 @@ class LayerUploadCheck(BaseCase):
         self.execute_script("jQuery('#file-input').show()")
         self.update_text('#file-input', GEOTIFF)
         self.click_link("Upload files")
-        self.click_link("Layer Info", timeout=60)
+        self.click_link("Layer Info", timeout=90)
 
     @superuser
     def remove(self):
         self.click_link("Data")
         self.click_link("Layers")
-        self.click_link(LAYERNAME)
+        self.click_link(LAYERNAME, timeout=30)
         # Workaround for non-SPCGeonode
         self.open(BASE+"/layers/geonode:%s" % LAYERNAME)
         self.click_button("Editing Tools")
@@ -105,10 +105,7 @@ class LayerUploadCheck(BaseCase):
     @layer
     def test_layers_no_errors(self):
         self.open(BASE+'/layers/')
-        # There's a proj4js call causing a 404,
-        # but the layer is correctly rendered.
-        # To be investigated!
-        # self.assert_no_404_errors()
+        self.assert_no_404_errors()
         self.assert_no_js_errors()
 
     def test_home_no_errors(self):
