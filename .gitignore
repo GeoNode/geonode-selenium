@@ -7,5 +7,8 @@ geckodriver.log
 # Virtual Environments
 venv/
 
+# Data
+data/
+
 # GeoNode
 geonode/

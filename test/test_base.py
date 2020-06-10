@@ -3,6 +3,8 @@
 from seleniumbase import BaseCase
 
 import os
+import re
+import time
 
 BASE = os.environ.get("GEONODE_URL", "http://127.0.0.1:8080")
 GEOTIFF = os.path.abspath("data/ntf_nord.tif")
@@ -15,6 +17,7 @@ LAYERNAME = os.path.splitext(FILENAME)[0]
 
 
 class LayerUploadCheck(BaseCase):
+
     def click_button(self, label):
         selector = "//button[contains(., '%s')]" % label
         self.driver.find_element_by_xpath(selector).click()
@@ -53,8 +56,15 @@ class LayerUploadCheck(BaseCase):
         self.open(BASE+"/layers/geonode:%s" % LAYERNAME)
         self.click_button("Editing Tools")
         self.click_link("Remove")
-        self.click('input[value="Yes, I am sure"]')
-        self.assertTrue(DOMAIN in self.get_title())
+        self.click('input[value="Yes, I am sure"]', timeout=90)
+        for _i in range(10):
+            if "Explore Layers" in self.get_title():
+                break
+            time.sleep(10)
+        self.assertTrue("Explore Layers" in self.get_title())
+        # src = self.driver.page_source
+        # text_found = re.search(r'0 Layers found', src)
+        # self.assertNotEqual(text_found, None)
 
     def layer(func):
         def wrapper(self, *args, **kwargs):
